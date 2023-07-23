@@ -17,5 +17,3 @@ services:
         delay: 10s
       restart_policy:
         condition: on-failure
-          #user: root:0
-          #network_mode: "host"  
