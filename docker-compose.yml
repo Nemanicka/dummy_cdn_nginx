@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+  nginx:
+    image: emcniece/nginx-cache-purge
+    container_name: nginx
+    volumes:
+            - ./nginx/conf/:/etc/nginx/conf.d:ro
+            - ./nginx/www/:/static/:ro
+            - ./nginx/cache/:/var/cache/dummycache:rw
+    ports:
+            - '8080:8080'
+            - '8081:8081'
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+          #user: root:0
+          #network_mode: "host"  
